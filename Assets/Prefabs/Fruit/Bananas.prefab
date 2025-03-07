@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5250042921469322048}
   - component: {fileID: 7227360321011114330}
+  - component: {fileID: 250128866776077844}
   m_Layer: 0
   m_Name: Bananas
   m_TagString: Untagged
@@ -87,3 +88,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &250128866776077844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661321840141982523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0584b85d2b229e24099fc7afaab7a7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient: 1
