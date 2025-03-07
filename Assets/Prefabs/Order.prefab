@@ -101,15 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6a75109c459e444be3c44170bf0e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  banana: {fileID: 0}
-  strawberries: {fileID: 0}
-  blueberries: {fileID: 0}
-  mango: {fileID: 0}
-  spinach: {fileID: 0}
-  smoothie1: 1
-  smoothie2: 0
-  smoothie3: 0
-  smoothie4: 0
+  ingredients:
+  - {fileID: 7661321840141982523, guid: 74c63c1b51f73c946b5e073671fe2b73, type: 3}
+  - {fileID: 1539719476375442128, guid: ed31c54bad08a3c4ea2de34e8b3d7759, type: 3}
+  - {fileID: 2531145064847429129, guid: 3f2ff2ac60939d24cb9d900bc05042dd, type: 3}
+  - {fileID: 7567317379311563377, guid: 012c6df03a73f9c4e9720d0cc92d1c18, type: 3}
+  - {fileID: 8011608481372820302, guid: bfca1d89b8e1a564face0f5ca08cdcd9, type: 3}
+  orderTimer: 20
 --- !u!1 &7330383020563149731
 GameObject:
   m_ObjectHideFlags: 0
