@@ -1396,58 +1396,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: mango
-      value: 
-      objectReference: {fileID: 2531145064847429129, guid: 3f2ff2ac60939d24cb9d900bc05042dd, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: banana
-      value: 
-      objectReference: {fileID: 7661321840141982523, guid: 74c63c1b51f73c946b5e073671fe2b73, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: spinach
-      value: 
-      objectReference: {fileID: 8011608481372820302, guid: bfca1d89b8e1a564face0f5ca08cdcd9, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: smoothie1
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: orderTimer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: blueberries
-      value: 
-      objectReference: {fileID: 7567317379311563377, guid: 012c6df03a73f9c4e9720d0cc92d1c18, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: strawberries
-      value: 
-      objectReference: {fileID: 1539719476375442128, guid: ed31c54bad08a3c4ea2de34e8b3d7759, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: ingredients.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: 'ingredients.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7661321840141982523, guid: 74c63c1b51f73c946b5e073671fe2b73, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: 'ingredients.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1539719476375442128, guid: ed31c54bad08a3c4ea2de34e8b3d7759, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: 'ingredients.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2531145064847429129, guid: 3f2ff2ac60939d24cb9d900bc05042dd, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: 'ingredients.Array.data[3]'
-      value: 
-      objectReference: {fileID: 7567317379311563377, guid: 012c6df03a73f9c4e9720d0cc92d1c18, type: 3}
-    - target: {fileID: 1792922855354373342, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
-      propertyPath: 'ingredients.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8011608481372820302, guid: bfca1d89b8e1a564face0f5ca08cdcd9, type: 3}
     - target: {fileID: 3513955899891673323, guid: 05db04d080e373a4fb46dccfb7c8dcd2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.5
