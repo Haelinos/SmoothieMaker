@@ -1,15 +1,13 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GenerateOrder : MonoBehaviour
 {
-    public GameObject[] ingredients;
-    public int orderTimer;
+    public GameObject[] ingredients; // Assign ingredients in Unity Inspector
+    public int orderTimer; // Time between orders
     private Vector3[] positions;
+    private List<GameObject> currentOrder = new List<GameObject>(); // Store current order
 
     private void Start()
     {
@@ -21,7 +19,7 @@ public class GenerateOrder : MonoBehaviour
             new Vector3(transform.position.x + 0.75f, transform.position.y - 0.25f, transform.position.z)
         };
 
-        StartCoroutine(OrderGenerator());
+        StartCoroutine(OrderGenerator()); // Start generating orders
     }
 
     IEnumerator OrderGenerator()
@@ -36,16 +34,30 @@ public class GenerateOrder : MonoBehaviour
 
         while (true) // Infinite loop to keep generating orders
         {
+            // Destroys previous order
+            foreach (GameObject obj in currentOrder)
+            {
+                Destroy(obj);
+            }
+            currentOrder.Clear(); // Clear the list
+
             int randomSmoothie = Random.Range(0, smoothies.Length); // Pick a random smoothie
             Debug.Log("Spawning Smoothie Order: " + randomSmoothie);
 
-            // Spawn each ingredient directly in the coroutine
+            // Spawns new order
             for (int i = 0; i < smoothies[randomSmoothie].Length; i++)
             {
-                Instantiate(smoothies[randomSmoothie][i], positions[i], transform.rotation);
+                GameObject ingredient = Instantiate(smoothies[randomSmoothie][i], positions[i], transform.rotation);
+                currentOrder.Add(ingredient); // Save reference to destroy later
             }
+            yield return new WaitForSeconds(orderTimer);
 
-            yield return new WaitForSeconds(orderTimer); // Wait before spawning the next order
+            // Destroy previous order AFTER waiting
+            foreach (GameObject obj in currentOrder)
+            {
+                Destroy(obj);
+            }
+            currentOrder.Clear(); // Clear the list
         }
     }
 }
