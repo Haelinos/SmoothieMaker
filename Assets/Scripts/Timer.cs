@@ -15,13 +15,17 @@ public class Timer : MonoBehaviour
 
     public void AnimateBar()
     {
-        LeanTween.scaleX(timerBar, -1, time);
+        // Ensure the scale starts at 1
+        timerBar.transform.localScale = new Vector3(1, 1, 1);
+
+        // Animate scaleX from 1 to 0 over 'time' seconds
+        LeanTween.scaleX(timerBar, 0, time);
     }
 
     IEnumerator StopTimer() 
     {
         AnimateBar();
         yield return new WaitForSeconds(time);
-        Destroy(timerBar);
+
     }
 }
