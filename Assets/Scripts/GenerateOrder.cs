@@ -26,10 +26,10 @@ public class GenerateOrder : MonoBehaviour
     {
         GameObject[][] smoothies = new GameObject[][]
         {
-            new GameObject[] { ingredients[0], ingredients[0], ingredients[1] }, // Smoothie 1: banana-banana-strawberries
-            new GameObject[] { ingredients[4], ingredients[2], ingredients[0] }, // Smoothie 2: spinach-mango-banana
-            new GameObject[] { ingredients[0], ingredients[3], ingredients[3] }, // Smoothie 3: banana-blueberries-blueberries
-            new GameObject[] { ingredients[1], ingredients[3], ingredients[2] }  // Smoothie 4: strawberries-blueberries-mango
+        new GameObject[] { ingredients[0], ingredients[0], ingredients[1] }, // Smoothie 1: banana-banana-strawberries
+        new GameObject[] { ingredients[4], ingredients[2], ingredients[0] }, // Smoothie 2: spinach-mango-banana
+        new GameObject[] { ingredients[0], ingredients[3], ingredients[3] }, // Smoothie 3: banana-blueberries-blueberries
+        new GameObject[] { ingredients[1], ingredients[3], ingredients[2] }  // Smoothie 4: strawberries-blueberries-mango
         };
 
         while (true) // Infinite loop to keep generating orders

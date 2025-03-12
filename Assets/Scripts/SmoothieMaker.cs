@@ -11,26 +11,28 @@ public class SmoothieMaker : MonoBehaviour
     [System.Serializable]
     public class SmoothieRecipe
     {
-        public string smoothieName; 
-        public List<Ingredient> requiredIngredients;
-        public GameObject smoothiePrefab;
+        public string smoothieName; // Name of the smoothie
+        public List<Ingredient> requiredIngredients; // Ingredients needed for this smoothie
+        public GameObject smoothiePrefab; // Prefab to instantiate for this smoothie
     }
 
-    public List<SmoothieRecipe> smoothieRecipes = new List<SmoothieRecipe>();
+    public List<SmoothieRecipe> smoothieRecipes = new List<SmoothieRecipe>(); // List of smoothie recipes
 
-    public SmoothieRecipe FindMatchingRecipe(SmoothieMaker.Ingredient[] ingredients)
+    // Find a matching recipe based on the ingredients
+    public SmoothieRecipe FindMatchingRecipe(Ingredient[] ingredients)
     {
         foreach (var recipe in smoothieRecipes)
         {
             if (IsRecipeMatch(recipe, ingredients))
             {
-                return recipe;
+                return recipe; // Return the matching recipe
             }
         }
-        return null;
+        return null; // No matching recipe found
     }
 
-    private bool IsRecipeMatch(SmoothieRecipe recipe, SmoothieMaker.Ingredient[] ingredients)
+    // Check if the selected ingredients match a specific recipe
+    private bool IsRecipeMatch(SmoothieRecipe recipe, Ingredient[] ingredients)
     {
         foreach (var requiredIngredient in recipe.requiredIngredients)
         {
@@ -45,9 +47,9 @@ public class SmoothieMaker : MonoBehaviour
             }
             if (!ingredientFound)
             {
-                return false;
+                return false; // Required ingredient not found
             }
         }
-        return true;
+        return true; // All required ingredients are present
     }
 }
