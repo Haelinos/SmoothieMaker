@@ -6,6 +6,7 @@ using DentedPixel;
 public class Timer : MonoBehaviour
 {
     public GameObject timerBar;
+    public GameObject order;
     public int time;
 
     private void Start()
@@ -26,6 +27,7 @@ public class Timer : MonoBehaviour
     {
         AnimateBar();
         yield return new WaitForSeconds(time);
+        Destroy(order);
 
     }
 }
