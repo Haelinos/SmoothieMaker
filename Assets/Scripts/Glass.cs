@@ -8,6 +8,7 @@ public class Glass : MonoBehaviour
     private int ingredientCount = 0; // Counter for ingredients in the glass
     public IngredientSpriteMapping[] ingredientSpriteMappings; // Maps ingredients to their sprites
     public MouseDrag mouseDragScript; // Reference to the MouseDrag script
+    public GlassManager glassManager; // Reference to the GlassManager
 
     [System.Serializable]
     public class IngredientSpriteMapping
@@ -110,17 +111,18 @@ public class Glass : MonoBehaviour
             Debug.Log($"Glass collided with SmoothieMixer. Ingredients: {ingredientCount}");
             if (ingredientCount == 3)
             {
-                SmoothieMaker.SmoothieRecipe matchedRecipe = smoothieMaker.FindMatchingRecipe(ingredients);
-                if (matchedRecipe != null)
+                smoothieMaker.CreateSmoothie(ingredients, collision.transform.position);
+                Destroy(gameObject); // Destroy the glass
+
+                // Notify the GlassManager to respawn a new glass
+                if (glassManager != null)
                 {
-                    Instantiate(matchedRecipe.smoothiePrefab, collision.transform.position, Quaternion.identity);
-                    Debug.Log($"Smoothie created: {matchedRecipe.smoothieName}");
+                    glassManager.RespawnGlass();
                 }
                 else
                 {
-                    Debug.Log("No matching smoothie recipe found!");
+                    Debug.LogError("GlassManager reference is missing!");
                 }
-                Destroy(gameObject);
             }
             else
             {
@@ -138,6 +140,4 @@ public class Glass : MonoBehaviour
     {
         Debug.Log($"Collision ended with: {collision.gameObject.name}");
     }
-
-
 }

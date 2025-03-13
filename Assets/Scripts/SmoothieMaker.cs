@@ -52,4 +52,24 @@ public class SmoothieMaker : MonoBehaviour
         }
         return true; // All required ingredients are present
     }
+
+    // Method to create a smoothie prefab based on the ingredients
+    public void CreateSmoothie(Ingredient[] ingredients, Vector3 position)
+    {
+        SmoothieRecipe matchedRecipe = FindMatchingRecipe(ingredients);
+        if (matchedRecipe != null)
+        {
+            GameObject smoothiePrefab = Instantiate(matchedRecipe.smoothiePrefab, position, Quaternion.identity);
+
+            // Attach the Smoothie script to the prefab and pass the ingredients
+            Smoothie smoothie = smoothiePrefab.AddComponent<Smoothie>();
+            smoothie.ingredients = ingredients;
+
+            Debug.Log($"Smoothie created: {matchedRecipe.smoothieName}");
+        }
+        else
+        {
+            Debug.Log("No matching smoothie recipe found!");
+        }
+    }
 }

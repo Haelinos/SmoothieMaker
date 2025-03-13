@@ -7,16 +7,17 @@ public class GenerateOrder : MonoBehaviour
     public GameObject[] ingredients; // Assign ingredients in Unity Inspector
     public int orderTimer; // Time between orders
     private Vector3[] positions;
-    private List<GameObject> currentOrder = new List<GameObject>(); // Store current order
+    public List<GameObject> currentOrder = new List<GameObject>(); // Store current order
+    public List<SmoothieMaker.Ingredient> currentOrderRecipe = new List<SmoothieMaker.Ingredient>(); // Store current order recipe
 
     private void Start()
     {
         // Define ingredient positions
         positions = new Vector3[]
         {
-            new Vector3(transform.position.x - 0.75f, transform.position.y - 0.25f, transform.position.z),
-            new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z),
-            new Vector3(transform.position.x + 0.75f, transform.position.y - 0.25f, transform.position.z)
+            new Vector3(transform.position.x - 0.75f, transform.position.y - 0.25f, 0), // Z = 0
+            new Vector3(transform.position.x, transform.position.y - 0.25f, 0),         // Z = 0
+            new Vector3(transform.position.x + 0.75f, transform.position.y - 0.25f, 0)  // Z = 0
         };
 
         StartCoroutine(OrderGenerator()); // Start generating orders
@@ -26,10 +27,10 @@ public class GenerateOrder : MonoBehaviour
     {
         GameObject[][] smoothies = new GameObject[][]
         {
-        new GameObject[] { ingredients[0], ingredients[0], ingredients[1] }, // Smoothie 1: banana-banana-strawberries
-        new GameObject[] { ingredients[4], ingredients[2], ingredients[0] }, // Smoothie 2: spinach-mango-banana
-        new GameObject[] { ingredients[0], ingredients[3], ingredients[3] }, // Smoothie 3: banana-blueberries-blueberries
-        new GameObject[] { ingredients[1], ingredients[3], ingredients[2] }  // Smoothie 4: strawberries-blueberries-mango
+            new GameObject[] { ingredients[0], ingredients[0], ingredients[1] }, // Smoothie 1: Banana, Banana, Strawberry
+            new GameObject[] { ingredients[4], ingredients[2], ingredients[0] }, // Smoothie 2: Spinach, Mango, Banana
+            new GameObject[] { ingredients[0], ingredients[3], ingredients[3] }, // Smoothie 3: Banana, Blueberry, Blueberry
+            new GameObject[] { ingredients[1], ingredients[3], ingredients[2] }  // Smoothie 4: Strawberry, Blueberry, Mango
         };
 
         while (true) // Infinite loop to keep generating orders
@@ -37,9 +38,14 @@ public class GenerateOrder : MonoBehaviour
             // Destroys previous order
             foreach (GameObject obj in currentOrder)
             {
-                Destroy(obj);
+                if (obj != null)
+                {
+                    Debug.Log($"Destroying ingredient: {obj.name}");
+                    Destroy(obj);
+                }
             }
             currentOrder.Clear(); // Clear the list
+            currentOrderRecipe.Clear(); // Clear the recipe
 
             int randomSmoothie = Random.Range(0, smoothies.Length); // Pick a random smoothie
             Debug.Log("Spawning Smoothie Order: " + randomSmoothie);
@@ -49,15 +55,29 @@ public class GenerateOrder : MonoBehaviour
             {
                 GameObject ingredient = Instantiate(smoothies[randomSmoothie][i], positions[i], transform.rotation);
                 currentOrder.Add(ingredient); // Save reference to destroy later
+
+                // Add the ingredient type to the current order recipe
+                IngredientObject ingredientObject = ingredient.GetComponent<IngredientObject>();
+                if (ingredientObject != null)
+                {
+                    currentOrderRecipe.Add(ingredientObject.ingredient);
+                }
+
+                Debug.Log($"Spawned ingredient: {ingredient.name} at position: {positions[i]}");
             }
             yield return new WaitForSeconds(orderTimer);
 
             // Destroy previous order AFTER waiting
             foreach (GameObject obj in currentOrder)
             {
-                Destroy(obj);
+                if (obj != null)
+                {
+                    Debug.Log($"Destroying ingredient: {obj.name}");
+                    Destroy(obj);
+                }
             }
             currentOrder.Clear(); // Clear the list
+            currentOrderRecipe.Clear(); // Clear the recipe
         }
     }
 }

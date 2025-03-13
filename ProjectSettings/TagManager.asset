@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - SmoothieMixer
+  - OrderIngredient
+  - Glass
+  - DonePanel
   layers:
   - Default
   - TransparentFX

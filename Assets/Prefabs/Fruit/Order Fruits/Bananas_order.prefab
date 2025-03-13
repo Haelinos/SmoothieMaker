@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7227360321011114330}
   m_Layer: 0
   m_Name: Bananas_order
-  m_TagString: Untagged
+  m_TagString: OrderIngredient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
