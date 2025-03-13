@@ -35,7 +35,9 @@ public class CountdownTimer : MonoBehaviour
     void TimerEnded()
     {
         Debug.Log("Timer Finished!");
-        countdownText.text = "TIME OUT"; 
+        countdownText.text = "TIME OUT";
+
+        // Quit the game
+        GameManager.Instance.QuitGame();
     }
 }
-
