@@ -15,9 +15,9 @@ public class GenerateOrder : MonoBehaviour
         // Define ingredient positions
         positions = new Vector3[]
         {
-            new Vector3(transform.position.x - 0.75f, transform.position.y - 0.25f, 0), // Z = 0
-            new Vector3(transform.position.x, transform.position.y - 0.25f, 0),         // Z = 0
-            new Vector3(transform.position.x + 0.75f, transform.position.y - 0.25f, 0)  // Z = 0
+            new Vector3(transform.position.x - 0.75f, transform.position.y - 0.25f, 0),
+            new Vector3(transform.position.x, transform.position.y - 0.25f, 0),
+            new Vector3(transform.position.x + 0.75f, transform.position.y - 0.25f, 0)
         };
 
         StartCoroutine(OrderGenerator()); // Start generating orders
@@ -35,7 +35,7 @@ public class GenerateOrder : MonoBehaviour
 
         while (true) // Infinite loop to keep generating orders
         {
-            // Destroys previous order
+            // Destroy previous order
             foreach (GameObject obj in currentOrder)
             {
                 if (obj != null)
@@ -50,21 +50,30 @@ public class GenerateOrder : MonoBehaviour
             int randomSmoothie = Random.Range(0, smoothies.Length); // Pick a random smoothie
             Debug.Log("Spawning Smoothie Order: " + randomSmoothie);
 
-            // Spawns new order
+            // Spawn new order
             for (int i = 0; i < smoothies[randomSmoothie].Length; i++)
             {
                 GameObject ingredient = Instantiate(smoothies[randomSmoothie][i], positions[i], transform.rotation);
                 currentOrder.Add(ingredient); // Save reference to destroy later
 
-                // Add the ingredient type to the current order recipe
+                // Manually assign the ingredient type after instantiation
                 IngredientObject ingredientObject = ingredient.GetComponent<IngredientObject>();
                 if (ingredientObject != null)
                 {
+                    // Assign the correct ingredient type from the prefab
+                    ingredientObject.ingredient = smoothies[randomSmoothie][i].GetComponent<IngredientObject>().ingredient;
+
                     currentOrderRecipe.Add(ingredientObject.ingredient);
+                    Debug.Log($"Assigned ingredient: {ingredientObject.ingredient} to {ingredient.name}");
+                }
+                else
+                {
+                    Debug.LogWarning($"IngredientObject component missing on {ingredient.name}");
                 }
 
                 Debug.Log($"Spawned ingredient: {ingredient.name} at position: {positions[i]}");
             }
+
             yield return new WaitForSeconds(orderTimer);
 
             // Destroy previous order AFTER waiting
