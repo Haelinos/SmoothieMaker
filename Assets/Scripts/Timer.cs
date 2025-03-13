@@ -1,12 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using DentedPixel;
 
 public class Timer : MonoBehaviour
 {
     public GameObject timerBar;
-    public GameObject order;
     public int time;
 
     private void Start()
@@ -23,11 +21,21 @@ public class Timer : MonoBehaviour
         LeanTween.scaleX(timerBar, 0, time);
     }
 
-    IEnumerator StopTimer() 
+    public void ResetTimer()
+    {
+        // Reset the scale
+        timerBar.transform.localScale = new Vector3(1, 1, 1);
+
+        // Restart the coroutine
+        StartCoroutine(StopTimer());
+    }
+
+    IEnumerator StopTimer()
     {
         AnimateBar();
         yield return new WaitForSeconds(time);
-        Destroy(order);
 
+        // Reset the bar after 20 seconds
+        ResetTimer();
     }
 }
