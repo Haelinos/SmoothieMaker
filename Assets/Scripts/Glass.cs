@@ -15,6 +15,25 @@ public class Glass : MonoBehaviour
     {
         public SmoothieMaker.Ingredient ingredient;
         public Sprite sprite;
+
+
+    }
+
+    private void Start()
+    {
+        // Find the SmoothieMaker and GlassManager in the scene
+        smoothieMaker = FindFirstObjectByType<SmoothieMaker>();
+        glassManager = FindFirstObjectByType<GlassManager>();
+
+        // Log errors if they aren't found
+        if (smoothieMaker == null)
+        {
+            Debug.LogError("SmoothieMaker not found in the scene!");
+        }
+        if (glassManager == null)
+        {
+            Debug.LogError("GlassManager not found in the scene!");
+        }
     }
 
     // Add an ingredient to the glass
