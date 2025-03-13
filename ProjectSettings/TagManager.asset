@@ -8,6 +8,7 @@ TagManager:
   - OrderIngredient
   - Glass
   - DonePanel
+  - Smoothie
   layers:
   - Default
   - TransparentFX
