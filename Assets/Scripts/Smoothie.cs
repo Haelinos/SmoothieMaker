@@ -3,7 +3,19 @@ using UnityEngine;
 
 public class Smoothie : MonoBehaviour
 {
+    public Money_UI moneyUI;
     public SmoothieMaker.Ingredient[] ingredients; // Stores the ingredients of this smoothie
+
+
+    public void Start()
+    {
+        moneyUI = FindFirstObjectByType<Money_UI>();
+
+        if (moneyUI == null)
+        {
+            Debug.LogError("moneyUI not found");
+        }
+    }
 
     // Method to check if this smoothie matches any active order
     public void CheckOrder(GenerateOrder[] orderGenerators)
@@ -55,6 +67,7 @@ public class Smoothie : MonoBehaviour
                 {
                     Debug.Log("Order matched! Awarding 10 points.");
                     GameManager.Instance.AddPoints(10);
+                    moneyUI.UpdateMoneyUI();
                     return;
                 }
             }
